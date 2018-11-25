@@ -46,18 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChessBoardManagement.cs" />
-    <Compile Include="Cons.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Model\ChessBoard.cs" />
+    <Compile Include="Model\Cons.cs" />
+    <Compile Include="FormGameCaro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormGameCaro.Designer.cs">
+      <DependentUpon>FormGameCaro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\ChessPiece.cs" />
+    <Compile Include="Model\GameCaro.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormGameCaro.resx">
+      <DependentUpon>FormGameCaro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -82,8 +84,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\o.png" />
+    <Content Include="Resources\x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

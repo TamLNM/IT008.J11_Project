@@ -16,7 +16,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormGameCaro());
         }
     }
 }
