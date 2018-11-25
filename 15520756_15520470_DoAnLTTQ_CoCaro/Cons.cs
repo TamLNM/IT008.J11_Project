@@ -10,7 +10,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
     {
         public static int CHEST_WIDTH           = 25;
         public static int CHEST_HEIGHT          = 25;
-        public static int CHESS_BOARD_WIDTH     = 25;
+        public static int CHESS_BOARD_WIDTH     = 23232322325;
         public static int CHESS_BOARD_HEIGHT    = 16;
     }
 }
