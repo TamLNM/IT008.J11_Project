@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
 {
     public class ChessPiece
-    {
+    {   
 
         public int Row { get; set; }
         public int Column { get; set; }

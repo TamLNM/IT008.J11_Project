@@ -37,7 +37,7 @@
             this.pnlChessBoard.Location = new System.Drawing.Point(16, 13);
             this.pnlChessBoard.Margin = new System.Windows.Forms.Padding(4);
             this.pnlChessBoard.Name = "pnlChessBoard";
-            this.pnlChessBoard.Size = new System.Drawing.Size(702, 672);
+            this.pnlChessBoard.Size = new System.Drawing.Size(702, 661);
             this.pnlChessBoard.TabIndex = 1;
             this.pnlChessBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlChessBoard_Paint);
             this.pnlChessBoard.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlChessBoard_MouseClick);
@@ -59,7 +59,7 @@
             this.panel1.Location = new System.Drawing.Point(718, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(306, 717);
+            this.panel1.Size = new System.Drawing.Size(306, 697);
             this.panel1.TabIndex = 9;
             // 
             // redo
@@ -159,7 +159,7 @@
             this.btnExit.Location = new System.Drawing.Point(162, 576);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(133, 109);
+            this.btnExit.Size = new System.Drawing.Size(133, 98);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Exit";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -196,11 +196,12 @@
             this.btnNewGame.Location = new System.Drawing.Point(20, 576);
             this.btnNewGame.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewGame.Name = "btnNewGame";
-            this.btnNewGame.Size = new System.Drawing.Size(133, 109);
+            this.btnNewGame.Size = new System.Drawing.Size(133, 98);
             this.btnNewGame.TabIndex = 3;
             this.btnNewGame.Text = "New Game";
             this.btnNewGame.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNewGame.UseVisualStyleBackColor = false;
+            this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
             // btn2Player
             // 
@@ -219,13 +220,14 @@
             this.btn2Player.Text = "2 Player";
             this.btn2Player.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn2Player.UseVisualStyleBackColor = false;
+            this.btn2Player.Click += new System.EventHandler(this.btn2Player_Click);
             // 
             // FormGameCaro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1024, 717);
+            this.ClientSize = new System.Drawing.Size(1024, 697);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlChessBoard);
             this.Margin = new System.Windows.Forms.Padding(4);

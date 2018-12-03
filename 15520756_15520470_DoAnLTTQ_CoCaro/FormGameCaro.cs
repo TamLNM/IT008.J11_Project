@@ -22,6 +22,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             InitializeComponent();
             grs = pnlChessBoard.CreateGraphics();
             Caro = new GameCaro();
+            btnNewGame.Enabled = false;
 
         }
 
@@ -49,12 +50,25 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
         private void pnlChessBoard_Paint(object sender, PaintEventArgs e)
         {
             this.Caro.DrawBroadChess(grs);
+            this.Caro.RepaintChess(grs);
         }
 
         private void pnlChessBoard_MouseClick(object sender, MouseEventArgs e)
         {
             this.Caro.PlayChess(e.X, e.Y, grs);
 
+        }
+
+        private void btn2Player_Click(object sender, EventArgs e)
+        {
+            this.Caro.Start2Player(grs);
+            btnNewGame.Enabled = true;
+        }
+
+        private void btnNewGame_Click(object sender, EventArgs e)
+        {
+            grs.Clear(pnlChessBoard.BackColor);
+            this.Caro.NewGame(grs);
         }
     }
 }

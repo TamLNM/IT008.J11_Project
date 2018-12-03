@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
 {
@@ -27,24 +22,24 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
         {
             for (int i = 0; i <= NumbColumns; i++)
             {
-                g.DrawLine(new Pen(Color.Black), i * 30, 0, i * 30, 30 * NumbRows);
+                g.DrawLine(new Pen(Color.Black), i * Cons.CHEST_WIDTH , 0, i * Cons.CHEST_WIDTH, Cons.CHEST_HEIGHT * NumbRows);
             }
             for (int j = 0; j <= NumbRows; j++)
             {
-                g.DrawLine(new Pen(Color.Black), 0, j * 30, 30 * NumbColumns, j * 30);
+                g.DrawLine(new Pen(Color.Black), 0, j * Cons.CHEST_HEIGHT, Cons.CHEST_WIDTH * NumbColumns, j * Cons.CHEST_HEIGHT);
+
             }
         }
-
         // Vẽ quân cờ
         public void DrawChess(Graphics g, Point point, Image img)
         {
-            g.DrawImage(img, point.X + 1, point.Y + 1, 30 - 2, 30 - 2);
+            g.DrawImage(img, point.X + 1, point.Y + 1, Cons.CHEST_WIDTH - 2, Cons.CHEST_HEIGHT - 2);
         }
 
         // Xóa quân cờ
         public void RemoveChess(Graphics g, Point point, SolidBrush sb)
         {
-            g.FillRectangle(sb, point.X + 1, point.Y + 1, 30 - 2, 30 - 2);
+            g.FillRectangle(sb, point.X + 1, point.Y + 1, Cons.CHEST_WIDTH - 2, Cons.CHEST_HEIGHT - 2);
         }
     }
 }

@@ -1,0 +1,10 @@
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\bin\Debug\15520756_15520470_DoAnLTTQ_CoCaro.exe.config
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\bin\Debug\15520756_15520470_DoAnLTTQ_CoCaro.exe
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\bin\Debug\15520756_15520470_DoAnLTTQ_CoCaro.pdb
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\obj\Debug\15520756_15520470_DoAnLTTQ_CoCaro.csprojAssemblyReference.cache
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\obj\Debug\_15520756_15520470_DoAnLTTQ_CoCaro.FormGameCaro.resources
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\obj\Debug\_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.resources
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\obj\Debug\15520756_15520470_DoAnLTTQ_CoCaro.csproj.GenerateResource.cache
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\obj\Debug\15520756_15520470_DoAnLTTQ_CoCaro.csproj.CoreCompileInputs.cache
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\obj\Debug\15520756_15520470_DoAnLTTQ_CoCaro.exe
+C:\Users\manph\Documents\GitHub\IT008.J11_Project\15520756_15520470_DoAnLTTQ_CoCaro\obj\Debug\15520756_15520470_DoAnLTTQ_CoCaro.pdb
