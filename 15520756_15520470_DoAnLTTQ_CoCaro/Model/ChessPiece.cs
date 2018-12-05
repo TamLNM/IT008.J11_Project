@@ -22,6 +22,10 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
             Position = pos;
             Owner = owner;
         }
+
+        public ChessPiece()
+        {
+        }
     }
 }
 

@@ -16,8 +16,8 @@
             this.components = new System.ComponentModel.Container();
             this.pnlChessBoard = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.redo = new System.Windows.Forms.Button();
-            this.undo = new System.Windows.Forms.Button();
+            this.btnRedo = new System.Windows.Forms.Button();
+            this.btnUndo = new System.Windows.Forms.Button();
             this.prcbCoolDown = new System.Windows.Forms.ProgressBar();
             this.btnLAN = new System.Windows.Forms.Button();
             this.txbIP = new System.Windows.Forms.TextBox();
@@ -45,8 +45,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.redo);
-            this.panel1.Controls.Add(this.undo);
+            this.panel1.Controls.Add(this.btnRedo);
+            this.panel1.Controls.Add(this.btnUndo);
             this.panel1.Controls.Add(this.prcbCoolDown);
             this.panel1.Controls.Add(this.btnLAN);
             this.panel1.Controls.Add(this.txbIP);
@@ -62,42 +62,44 @@
             this.panel1.Size = new System.Drawing.Size(306, 697);
             this.panel1.TabIndex = 9;
             // 
-            // redo
+            // btnRedo
             // 
-            this.redo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.redo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.redo.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.redo.FlatAppearance.BorderSize = 0;
-            this.redo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.redo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.redo.ForeColor = System.Drawing.SystemColors.Control;
-            this.redo.Location = new System.Drawing.Point(161, 350);
-            this.redo.Margin = new System.Windows.Forms.Padding(4);
-            this.redo.Name = "redo";
-            this.redo.Size = new System.Drawing.Size(133, 102);
-            this.redo.TabIndex = 12;
-            this.redo.Text = "Redo";
-            this.redo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.redo.UseVisualStyleBackColor = false;
+            this.btnRedo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRedo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRedo.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnRedo.FlatAppearance.BorderSize = 0;
+            this.btnRedo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRedo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRedo.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRedo.Location = new System.Drawing.Point(161, 350);
+            this.btnRedo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRedo.Name = "btnRedo";
+            this.btnRedo.Size = new System.Drawing.Size(133, 102);
+            this.btnRedo.TabIndex = 12;
+            this.btnRedo.Text = "Redo";
+            this.btnRedo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRedo.UseVisualStyleBackColor = false;
+            this.btnRedo.Click += new System.EventHandler(this.redo_Click);
             // 
-            // undo
+            // btnUndo
             // 
-            this.undo.AutoSize = true;
-            this.undo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.undo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.undo.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.undo.FlatAppearance.BorderSize = 0;
-            this.undo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.undo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.undo.ForeColor = System.Drawing.SystemColors.Control;
-            this.undo.Location = new System.Drawing.Point(20, 350);
-            this.undo.Margin = new System.Windows.Forms.Padding(4);
-            this.undo.Name = "undo";
-            this.undo.Size = new System.Drawing.Size(133, 102);
-            this.undo.TabIndex = 11;
-            this.undo.Text = "Undo";
-            this.undo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.undo.UseVisualStyleBackColor = false;
+            this.btnUndo.AutoSize = true;
+            this.btnUndo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnUndo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnUndo.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnUndo.FlatAppearance.BorderSize = 0;
+            this.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUndo.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnUndo.Location = new System.Drawing.Point(20, 350);
+            this.btnUndo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(133, 102);
+            this.btnUndo.TabIndex = 11;
+            this.btnUndo.Text = "Undo";
+            this.btnUndo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnUndo.UseVisualStyleBackColor = false;
+            this.btnUndo.Click += new System.EventHandler(this.undo_Click);
             // 
             // prcbCoolDown
             // 
@@ -164,6 +166,7 @@
             this.btnExit.Text = "Exit";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnComputer
             // 
@@ -183,6 +186,7 @@
             this.btnComputer.Text = "Computer";
             this.btnComputer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnComputer.UseVisualStyleBackColor = false;
+            this.btnComputer.Click += new System.EventHandler(this.btnComputer_Click);
             // 
             // btnNewGame
             // 
@@ -254,8 +258,8 @@
         private System.Windows.Forms.TextBox txbIP;
         private System.Windows.Forms.ProgressBar prcbCoolDown;
         private System.Windows.Forms.Timer tmCoolDown;
-        private System.Windows.Forms.Button undo;
-        private System.Windows.Forms.Button redo;
+        private System.Windows.Forms.Button btnUndo;
+        private System.Windows.Forms.Button btnRedo;
         private System.Windows.Forms.ImageList imageList1;
     }
 }
