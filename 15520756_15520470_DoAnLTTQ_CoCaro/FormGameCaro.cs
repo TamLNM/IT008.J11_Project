@@ -23,6 +23,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             grs = pnlChessBoard.CreateGraphics();
             Caro = new GameCaro();
             btnNewGame.Enabled = false;
+            
             btnRedo.Enabled = false;
 
         }
@@ -76,6 +77,12 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             btn2Player.Enabled = false;
             btnComputer.Enabled = true;
 
+            btnNewGame.Image = global::_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.btnNew_img;
+            btnNewGame.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            btnComputer.Image = global::_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.btnComputer_img;
+            btnComputer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn2Player.Image = global::_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.btn2Player_img_disable;
+            this.btn2Player.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
         }
 
         private void btnNewGame_Click(object sender, EventArgs e)
@@ -90,10 +97,14 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             this.Caro.StartVsComp(grs);
             btnComputer.Enabled = false;
             btnNewGame.Enabled = true;
-
             btn2Player.Enabled = true;
 
-
+            btnNewGame.Image = global::_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.btnNew_img;
+            btnNewGame.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            btnComputer.Image = global::_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.btnComputer_img_disable;
+            btnComputer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn2Player.Image = global::_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.btn2Player_img;
+            this.btn2Player.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
         }
 
         private void undo_Click(object sender, EventArgs e)

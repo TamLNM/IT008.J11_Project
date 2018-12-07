@@ -14,6 +14,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGameCaro));
             this.pnlChessBoard = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRedo = new System.Windows.Forms.Button();
@@ -34,10 +35,9 @@
             // pnlChessBoard
             // 
             this.pnlChessBoard.BackColor = System.Drawing.Color.AliceBlue;
-            this.pnlChessBoard.Location = new System.Drawing.Point(16, 13);
-            this.pnlChessBoard.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlChessBoard.Location = new System.Drawing.Point(12, 11);
             this.pnlChessBoard.Name = "pnlChessBoard";
-            this.pnlChessBoard.Size = new System.Drawing.Size(702, 661);
+            this.pnlChessBoard.Size = new System.Drawing.Size(526, 537);
             this.pnlChessBoard.TabIndex = 1;
             this.pnlChessBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlChessBoard_Paint);
             this.pnlChessBoard.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlChessBoard_MouseClick);
@@ -56,10 +56,9 @@
             this.panel1.Controls.Add(this.btnNewGame);
             this.panel1.Controls.Add(this.btn2Player);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(718, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(538, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(306, 697);
+            this.panel1.Size = new System.Drawing.Size(230, 566);
             this.panel1.TabIndex = 9;
             // 
             // btnRedo
@@ -71,10 +70,11 @@
             this.btnRedo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRedo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRedo.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRedo.Location = new System.Drawing.Point(161, 350);
-            this.btnRedo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRedo.Image = global::_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.btnRedo_img_disable;
+            this.btnRedo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRedo.Location = new System.Drawing.Point(121, 284);
             this.btnRedo.Name = "btnRedo";
-            this.btnRedo.Size = new System.Drawing.Size(133, 102);
+            this.btnRedo.Size = new System.Drawing.Size(100, 83);
             this.btnRedo.TabIndex = 12;
             this.btnRedo.Text = "Redo";
             this.btnRedo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -91,10 +91,11 @@
             this.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUndo.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUndo.Location = new System.Drawing.Point(20, 350);
-            this.btnUndo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUndo.Image = global::_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.btnUndo_img_disable;
+            this.btnUndo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnUndo.Location = new System.Drawing.Point(15, 284);
             this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Size = new System.Drawing.Size(133, 102);
+            this.btnUndo.Size = new System.Drawing.Size(100, 83);
             this.btnUndo.TabIndex = 11;
             this.btnUndo.Text = "Undo";
             this.btnUndo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -103,10 +104,9 @@
             // 
             // prcbCoolDown
             // 
-            this.prcbCoolDown.Location = new System.Drawing.Point(20, 314);
-            this.prcbCoolDown.Margin = new System.Windows.Forms.Padding(4);
+            this.prcbCoolDown.Location = new System.Drawing.Point(15, 255);
             this.prcbCoolDown.Name = "prcbCoolDown";
-            this.prcbCoolDown.Size = new System.Drawing.Size(275, 28);
+            this.prcbCoolDown.Size = new System.Drawing.Size(206, 23);
             this.prcbCoolDown.TabIndex = 10;
             // 
             // btnLAN
@@ -116,10 +116,9 @@
             this.btnLAN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLAN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLAN.ForeColor = System.Drawing.Color.White;
-            this.btnLAN.Location = new System.Drawing.Point(20, 192);
-            this.btnLAN.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLAN.Location = new System.Drawing.Point(15, 156);
             this.btnLAN.Name = "btnLAN";
-            this.btnLAN.Size = new System.Drawing.Size(133, 114);
+            this.btnLAN.Size = new System.Drawing.Size(100, 93);
             this.btnLAN.TabIndex = 9;
             this.btnLAN.Text = "LAN";
             this.btnLAN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -130,10 +129,9 @@
             this.txbIP.BackColor = System.Drawing.Color.Black;
             this.txbIP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbIP.ForeColor = System.Drawing.Color.White;
-            this.txbIP.Location = new System.Drawing.Point(160, 236);
-            this.txbIP.Margin = new System.Windows.Forms.Padding(4);
+            this.txbIP.Location = new System.Drawing.Point(120, 192);
             this.txbIP.Name = "txbIP";
-            this.txbIP.Size = new System.Drawing.Size(133, 22);
+            this.txbIP.Size = new System.Drawing.Size(100, 20);
             this.txbIP.TabIndex = 8;
             this.txbIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -142,10 +140,9 @@
             this.ptbIcon.BackColor = System.Drawing.SystemColors.Control;
             this.ptbIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ptbIcon.InitialImage = null;
-            this.ptbIcon.Location = new System.Drawing.Point(77, 13);
-            this.ptbIcon.Margin = new System.Windows.Forms.Padding(4);
+            this.ptbIcon.Location = new System.Drawing.Point(58, 11);
             this.ptbIcon.Name = "ptbIcon";
-            this.ptbIcon.Size = new System.Drawing.Size(210, 171);
+            this.ptbIcon.Size = new System.Drawing.Size(158, 139);
             this.ptbIcon.TabIndex = 0;
             this.ptbIcon.TabStop = false;
             // 
@@ -158,10 +155,11 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnExit.Location = new System.Drawing.Point(162, 576);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
+            this.btnExit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnExit.Location = new System.Drawing.Point(122, 468);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(133, 98);
+            this.btnExit.Size = new System.Drawing.Size(100, 80);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Exit";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -178,10 +176,11 @@
             this.btnComputer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnComputer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnComputer.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnComputer.Location = new System.Drawing.Point(19, 460);
-            this.btnComputer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnComputer.Image = global::_15520756_15520470_DoAnLTTQ_CoCaro.Properties.Resources.btnComputer_img;
+            this.btnComputer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnComputer.Location = new System.Drawing.Point(14, 374);
             this.btnComputer.Name = "btnComputer";
-            this.btnComputer.Size = new System.Drawing.Size(133, 108);
+            this.btnComputer.Size = new System.Drawing.Size(100, 88);
             this.btnComputer.TabIndex = 5;
             this.btnComputer.Text = "Computer";
             this.btnComputer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -197,10 +196,11 @@
             this.btnNewGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewGame.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnNewGame.Location = new System.Drawing.Point(20, 576);
-            this.btnNewGame.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNewGame.Image = ((System.Drawing.Image)(resources.GetObject("btnNewGame.Image")));
+            this.btnNewGame.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNewGame.Location = new System.Drawing.Point(15, 468);
             this.btnNewGame.Name = "btnNewGame";
-            this.btnNewGame.Size = new System.Drawing.Size(133, 98);
+            this.btnNewGame.Size = new System.Drawing.Size(100, 80);
             this.btnNewGame.TabIndex = 3;
             this.btnNewGame.Text = "New Game";
             this.btnNewGame.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -216,10 +216,11 @@
             this.btn2Player.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn2Player.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn2Player.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn2Player.Location = new System.Drawing.Point(162, 460);
-            this.btn2Player.Margin = new System.Windows.Forms.Padding(4);
+            this.btn2Player.Image = ((System.Drawing.Image)(resources.GetObject("btn2Player.Image")));
+            this.btn2Player.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn2Player.Location = new System.Drawing.Point(122, 374);
             this.btn2Player.Name = "btn2Player";
-            this.btn2Player.Size = new System.Drawing.Size(133, 108);
+            this.btn2Player.Size = new System.Drawing.Size(100, 88);
             this.btn2Player.TabIndex = 6;
             this.btn2Player.Text = "2 Player";
             this.btn2Player.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -228,13 +229,12 @@
             // 
             // FormGameCaro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1024, 697);
+            this.ClientSize = new System.Drawing.Size(768, 566);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlChessBoard);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormGameCaro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caro";
