@@ -73,29 +73,9 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btn2Player_img_disable {
-            get {
-                object obj = ResourceManager.GetObject("btn2Player_img_disable", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap btnComputer_img {
             get {
                 object obj = ResourceManager.GetObject("btnComputer_img", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap btnComputer_img_disable {
-            get {
-                object obj = ResourceManager.GetObject("btnComputer_img_disable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,29 +103,9 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btnNew_img_disable {
-            get {
-                object obj = ResourceManager.GetObject("btnNew_img_disable", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap btnRedo_img {
             get {
                 object obj = ResourceManager.GetObject("btnRedo_img", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap btnRedo_img_disable {
-            get {
-                object obj = ResourceManager.GetObject("btnRedo_img_disable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +123,19 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btnUndo_img_disable {
+        internal static System.Drawing.Bitmap LAN_icon {
             get {
-                object obj = ResourceManager.GetObject("btnUndo_img_disable", resourceCulture);
+                object obj = ResourceManager.GetObject("LAN_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MainBgIcon {
+            get {
+                object obj = ResourceManager.GetObject("MainBgIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -177,6 +147,16 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Properties {
             get {
                 object obj = ResourceManager.GetObject("o", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon ProgramIcon {
+            get {
+                object obj = ResourceManager.GetObject("ProgramIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

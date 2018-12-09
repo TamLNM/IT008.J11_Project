@@ -88,19 +88,14 @@
   <ItemGroup>
     <None Include="Resources\o.png" />
     <None Include="Resources\btnComputer_img.png" />
-    <None Include="Resources\btnComputer_img_disable.png" />
-    <None Include="Resources\btn2Player_img.png" />
-    <None Include="Resources\btn2Player_img_disable.png" />
     <None Include="Resources\btnExit_img.png" />
     <Content Include="Resources\btnNew_img.png" />
-    <None Include="Resources\btnNew_img_disable.png" />
-    <None Include="Resources\btnQuit_img.png" />
     <None Include="Resources\btnUndo_img.png" />
-    <None Include="Resources\btnUndo_img_disable.png" />
-    <None Include="Resources\btnUndo_img - Copy.png" />
-    <None Include="Resources\btnUndo_img_disable - Copy.png" />
     <None Include="Resources\btnRedo_img.png" />
-    <None Include="Resources\btnRedo_img_disable.png" />
+    <None Include="Resources\MainIcon.png" />
+    <None Include="Resources\MainBgIcon.png" />
+    <None Include="Resources\LAN_icon.png" />
+    <None Include="Resources\ProgramIcon.ico" />
     <Content Include="Resources\x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
