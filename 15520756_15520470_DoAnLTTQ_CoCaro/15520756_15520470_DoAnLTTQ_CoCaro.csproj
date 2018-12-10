@@ -92,7 +92,6 @@
     <Content Include="Resources\btnNew_img.png" />
     <None Include="Resources\btnUndo_img.png" />
     <None Include="Resources\btnRedo_img.png" />
-    <None Include="Resources\MainIcon.png" />
     <None Include="Resources\MainBgIcon.png" />
     <None Include="Resources\LAN_icon.png" />
     <None Include="Resources\ProgramIcon.ico" />

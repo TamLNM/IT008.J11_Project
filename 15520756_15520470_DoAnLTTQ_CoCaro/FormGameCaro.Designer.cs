@@ -17,17 +17,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGameCaro));
             this.pnlChessBoard = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.prbCountDown = new System.Windows.Forms.ProgressBar();
-            this.txbIP = new System.Windows.Forms.TextBox();
-            this.tmCoolDown = new System.Windows.Forms.Timer(this.components);
             this.btnRedo = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
+            this.prbCountDown = new System.Windows.Forms.ProgressBar();
             this.btnLAN = new System.Windows.Forms.Button();
+            this.txbIP = new System.Windows.Forms.TextBox();
             this.ptbIcon = new System.Windows.Forms.PictureBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnComputer = new System.Windows.Forms.Button();
             this.btnNewGame = new System.Windows.Forms.Button();
             this.btn2Player = new System.Windows.Forms.Button();
+            this.tmCountDown = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbIcon)).BeginInit();
             this.SuspendLayout();
@@ -60,25 +60,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(230, 566);
             this.panel1.TabIndex = 9;
-            // 
-            // prbCountDown
-            // 
-            this.prbCountDown.Location = new System.Drawing.Point(15, 255);
-            this.prbCountDown.Name = "prbCountDown";
-            this.prbCountDown.Size = new System.Drawing.Size(206, 23);
-            this.prbCountDown.TabIndex = 10;
-            // 
-            // txbIP
-            // 
-            this.txbIP.BackColor = System.Drawing.Color.Black;
-            this.txbIP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbIP.ForeColor = System.Drawing.Color.White;
-            this.txbIP.Location = new System.Drawing.Point(120, 192);
-            this.txbIP.Name = "txbIP";
-            this.txbIP.Size = new System.Drawing.Size(100, 20);
-            this.txbIP.TabIndex = 8;
-            this.txbIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txbIP.TextChanged += new System.EventHandler(this.txbIP_TextChanged);
             // 
             // btnRedo
             // 
@@ -121,6 +102,13 @@
             this.btnUndo.UseVisualStyleBackColor = false;
             this.btnUndo.Click += new System.EventHandler(this.undo_Click);
             // 
+            // prbCountDown
+            // 
+            this.prbCountDown.Location = new System.Drawing.Point(15, 255);
+            this.prbCountDown.Name = "prbCountDown";
+            this.prbCountDown.Size = new System.Drawing.Size(206, 23);
+            this.prbCountDown.TabIndex = 10;
+            // 
             // btnLAN
             // 
             this.btnLAN.BackColor = System.Drawing.Color.Black;
@@ -138,6 +126,18 @@
             this.btnLAN.Text = "LAN";
             this.btnLAN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLAN.UseVisualStyleBackColor = false;
+            // 
+            // txbIP
+            // 
+            this.txbIP.BackColor = System.Drawing.Color.Black;
+            this.txbIP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txbIP.ForeColor = System.Drawing.Color.White;
+            this.txbIP.Location = new System.Drawing.Point(120, 192);
+            this.txbIP.Name = "txbIP";
+            this.txbIP.Size = new System.Drawing.Size(100, 20);
+            this.txbIP.TabIndex = 8;
+            this.txbIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txbIP.TextChanged += new System.EventHandler(this.txbIP_TextChanged);
             // 
             // ptbIcon
             // 
@@ -232,6 +232,10 @@
             this.btn2Player.UseVisualStyleBackColor = false;
             this.btn2Player.Click += new System.EventHandler(this.btn2Player_Click);
             // 
+            // tmCountDown
+            // 
+            this.tmCountDown.Tick += new System.EventHandler(this.tmCountDown_Tick);
+            // 
             // FormGameCaro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,7 +267,7 @@
         private System.Windows.Forms.Button btnLAN;
         private System.Windows.Forms.TextBox txbIP;
         private System.Windows.Forms.ProgressBar prbCountDown;
-        private System.Windows.Forms.Timer tmCoolDown;
+        private System.Windows.Forms.Timer tmCountDown;
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.Button btnRedo;
     }

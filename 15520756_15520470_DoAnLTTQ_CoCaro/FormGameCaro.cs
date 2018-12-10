@@ -19,8 +19,6 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
         private Graphics grs;
         public GameCaro Caro;
 
-        public static int stepTime = 100;
-        public static int playTime = 15000;
         public FormGameCaro()
         {
             InitializeComponent();
@@ -32,14 +30,16 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             btnRedo.Enabled = false;
             btnUndo.Enabled = false;
 
-            // Set progress bar
-            prbCountDown.Step = stepTime;
-            prbCountDown.Maximum = playTime;
+            // Initial progress bar
+            prbCountDown.Step = Cons.stepTime;
+            prbCountDown.Maximum = Cons.playTime;
             prbCountDown.Value = 0;
 
             // Get IP Address
             IPHostEntry ip = new IPHostEntry();
-            ip = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName());
+#pragma warning disable CS0618 // Type or member is obsolete
+            ip = Dns.GetHostByName(Dns.GetHostName());
+#pragma warning restore CS0618 // Type or member is obsolete
             foreach (System.Net.IPAddress listip in ip.AddressList)
             {
                 txbIP.Text = listip.ToString();
@@ -84,6 +84,10 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
                 }
             }
             btnUndo.Enabled = true;
+
+            // Set progress bar
+            tmCountDown.Start();
+            prbCountDown.Value = 0;
         }
 
         private void btn2Player_Click(object sender, EventArgs e)
@@ -164,6 +168,19 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
         private void txbIP_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tmCountDown_Tick(object sender, EventArgs e)
+        {
+            prbCountDown.PerformStep();
+
+            if (prbCountDown.Value >= prbCountDown.Maximum)
+            {
+                tmCountDown.Stop();
+
+                // Insert code here: for another player win when time out               
+                // ...
+            }
         }
     }
 }
