@@ -24,7 +24,10 @@ Hai người chơi luân phiên đánh các nước cờ (x, o là hai ký tự 
 ## **II. GIỚI THIỆU VỀ ỨNG DỤNG CỜ CARO DO NHÓM THỰC HIỆN:**
 
 ### **1. Giao diện chính:**
-![](https://github.com/TamLNM/IT008.J11_Project/blob/master/CaroUI.PNG)
+
+<p align="center">
+    <img src="https://github.com/TamLNM/IT008.J11_Project/blob/master/CaroUI.PNG">
+</p>
 
 ### **2. Giới thiệu tính năng:**
 - Tính năng 1: Chơi với máy
@@ -36,7 +39,9 @@ Hai người chơi luân phiên đánh các nước cờ (x, o là hai ký tự 
 * Bước 1: Khởi động ứng dụng Caro
 * Bước 2: Click vào biểu tượng "Computer" ở thanh bên phải cửa sổ
 ```
-![](https://github.com/TamLNM/IT008.J11_Project/blob/master/Feature1.PNG)
+<p align="center">
+  <img src = "https://github.com/TamLNM/IT008.J11_Project/blob/master/Feature1.PNG">
+</p>
 
 - Tính năng 2: 2 người chơi (play-with-yourself)
 
