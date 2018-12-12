@@ -51,7 +51,7 @@ Hai người chơi luân phiên đánh các nước cờ (x, o là hai ký tự 
 * Sơ đồ của 2 ứng dụng kết nối với nhau trong quá trình truyền tin:
 
 <p align="center">
-    <img src="https://github.com/TamLNM/IT008.J11_Project/blob/master/Connect_Desc.PNG">
+    <img src="https://github.com/TamLNM/IT008.J11_Project/blob/master/Connect_Desc.png">
 </p>
 
 Để 2 ứng dụng có thể giao tiếp với nhau, chúng phải có một không gian chung. Do đó, một trong 2 ứng dụng đang chạy phải có một anh đóng vai trò là server, anh còn lại sẽ có vai trò là client.
