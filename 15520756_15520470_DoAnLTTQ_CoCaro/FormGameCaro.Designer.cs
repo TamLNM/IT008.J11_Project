@@ -126,6 +126,7 @@
             this.btnLAN.Text = "LAN";
             this.btnLAN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLAN.UseVisualStyleBackColor = false;
+            this.btnLAN.Click += new System.EventHandler(this.btnLAN_Click);
             // 
             // txbIP
             // 
@@ -249,6 +250,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caro";
             this.Load += new System.EventHandler(this.FormGameCaro_Load);
+            this.Shown += new System.EventHandler(this.FormGameCaro_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbIcon)).EndInit();

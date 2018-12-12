@@ -6,7 +6,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,9 +17,11 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
     public partial class FormGameCaro : Form
     {
         #region properties
-        #endregion
         private Graphics grs;
         public GameCaro Caro;
+
+        SocketManager socket;
+        #endregion
 
         public FormGameCaro()
         {
@@ -35,15 +39,8 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             prbCountDown.Maximum = Cons.playTime;
             prbCountDown.Value = 0;
 
-            // Get IP Address
-            IPHostEntry ip = new IPHostEntry();
-#pragma warning disable CS0618 // Type or member is obsolete
-            ip = Dns.GetHostByName(Dns.GetHostName());
-#pragma warning restore CS0618 // Type or member is obsolete
-            foreach (System.Net.IPAddress listip in ip.AddressList)
-            {
-                txbIP.Text = listip.ToString();
-            }
+            // Initial socket
+            socket = new SocketManager();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -180,6 +177,59 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
 
                 // Insert code here: for another player win when time out               
                 // ...
+            }
+        }
+
+        private void btnLAN_Click(object sender, EventArgs e)
+        {
+            socket.IP = txbIP.Text;
+            if (!socket.ConnectServer()) // 
+            {
+                socket.CreateServer();
+                Thread listenThread = new Thread(() =>
+                {
+                    while (true)
+                    {
+                        Thread.Sleep(500); // 500ms = 0.5s
+                        try
+                        {
+                            Listen();
+                            break;
+                        }
+                        catch{}
+                    }
+                });
+                listenThread.IsBackground = true;
+                listenThread.Start();
+            }
+            else
+            {
+                socket.Send("Thông tin từ client");
+                Thread listenThread = new Thread(() =>
+                {
+                    Listen();
+                });
+                listenThread.IsBackground = true;
+                listenThread.Start();
+            }
+        }
+
+        // Create function Listen()
+        void Listen()
+        {
+            string data = (String) socket.Receive();
+
+            MessageBox.Show(data);
+        }
+
+        // Set IP Address
+        private void FormGameCaro_Shown(object sender, EventArgs e)
+        {
+            txbIP.Text = socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
+
+            if (string.IsNullOrEmpty(txbIP.Text))
+            {
+                txbIP.Text = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
             }
         }
     }

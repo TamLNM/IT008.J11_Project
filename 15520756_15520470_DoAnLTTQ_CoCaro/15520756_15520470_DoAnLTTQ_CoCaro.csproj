@@ -56,6 +56,7 @@
     </Compile>
     <Compile Include="Model\ChessPiece.cs" />
     <Compile Include="Model\GameCaro.cs" />
+    <Compile Include="Model\SocketManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormGameCaro.resx">
