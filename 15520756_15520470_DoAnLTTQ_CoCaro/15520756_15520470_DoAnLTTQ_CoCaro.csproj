@@ -59,6 +59,7 @@
     <Compile Include="Model\SocketManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocketData.cs" />
     <EmbeddedResource Include="FormGameCaro.resx">
       <DependentUpon>FormGameCaro.cs</DependentUpon>
     </EmbeddedResource>

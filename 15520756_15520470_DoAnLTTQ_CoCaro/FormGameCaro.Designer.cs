@@ -151,6 +151,7 @@
             this.ptbIcon.Size = new System.Drawing.Size(150, 150);
             this.ptbIcon.TabIndex = 0;
             this.ptbIcon.TabStop = false;
+            this.ptbIcon.Click += new System.EventHandler(this.ptbIcon_Click);
             // 
             // btnExit
             // 

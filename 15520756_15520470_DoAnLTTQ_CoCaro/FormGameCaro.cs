@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static _15520756_15520470_DoAnLTTQ_CoCaro.SocketData;
 
 namespace _15520756_15520470_DoAnLTTQ_CoCaro
 {
@@ -21,6 +22,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
         public GameCaro Caro;
 
         SocketManager socket;
+        bool isLANConnected;
         #endregion
 
         public FormGameCaro()
@@ -41,6 +43,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
 
             // Initial socket
             socket = new SocketManager();
+            isLANConnected = false;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -72,19 +75,36 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
 
         private void pnlChessBoard_MouseClick(object sender, MouseEventArgs e)
         {
-            if(!this.Caro.end)
+            if (!this.Caro.end)
             {
-                this.Caro.PlayChess(e.X, e.Y, grs);
-                if (this.Caro.typlePlay == 2)
+                if (this.Caro.PlayChess(e.X, e.Y, grs))
                 {
-                    this.Caro.StartComputer(grs);
+                    // Set progress bar
+                    tmCountDown.Start();
+                    prbCountDown.Value = 0;
+
+                    if (isLANConnected)
+                    {
+                        // Send chess-play info to other-player 
+                        socket.Send(new SocketData((int)SocketCommand.SEND_POINT, e.X, e.Y, ""));
+                        Listen();
+                        pnlChessBoard.Enabled = false;
+
+                        if (this.Caro.end)
+                        {
+                            tmCountDown.Stop();
+                            prbCountDown.Value = 0;
+                        }
+                    }
+
+
+                    if (this.Caro.typlePlay == 2)
+                    {
+                        this.Caro.StartComputer(grs);
+                    }
+                    btnUndo.Enabled = true;
                 }
             }
-            btnUndo.Enabled = true;
-
-            // Set progress bar
-            tmCountDown.Start();
-            prbCountDown.Value = 0;
         }
 
         private void btn2Player_Click(object sender, EventArgs e)
@@ -97,6 +117,9 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             btn2Player.Enabled = false;
             btnComputer.Enabled = true;
             btnUndo.Enabled = false;
+
+            // Reset progress bar
+            prbCountDown.Value = 0;
         }
 
         private void btnNewGame_Click(object sender, EventArgs e)
@@ -106,6 +129,17 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
 
             // Set button status
             btnUndo.Enabled = false;
+
+            // Reset progress bar
+            tmCountDown.Start();
+            prbCountDown.Value = 0;
+
+            if (isLANConnected)
+            {
+                socket.Send(new SocketData((int)SocketCommand.NEW_GAME));
+                Listen();
+            }
+
         }
 
         private void btnComputer_Click(object sender, EventArgs e)
@@ -119,7 +153,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             btn2Player.Enabled = true;
             btnUndo.Enabled = false;
 
-            // Set time for process bar
+            // Reset progress bar
             prbCountDown.Value = 0;
         }
 
@@ -175,51 +209,95 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             {
                 tmCountDown.Stop();
 
-                // Insert code here: for another player win when time out               
-                // ...
+                if (this.Caro.getTurn() == 1)
+                {
+                    MessageBox.Show("O win");
+                    this.Caro.end = true;
+                }
+                else
+                {
+                    MessageBox.Show("X win");
+                    this.Caro.end = true;
+                }
             }
         }
 
         private void btnLAN_Click(object sender, EventArgs e)
         {
+            isLANConnected = true;
+            btnUndo.Enabled = false;
+            btnRedo.Enabled = false;
+            btnNewGame.Enabled = true;
+
+            // Reset the progress bar
+            prbCountDown.Value = 0;
+            tmCountDown.Stop();
+
+            // Get and show IP address
             socket.IP = txbIP.Text;
             if (!socket.ConnectServer()) // 
             {
+                socket.isServer = true;
+                pnlChessBoard.Enabled = true;
                 socket.CreateServer();
-                Thread listenThread = new Thread(() =>
-                {
-                    while (true)
-                    {
-                        Thread.Sleep(500); // 500ms = 0.5s
-                        try
-                        {
-                            Listen();
-                            break;
-                        }
-                        catch{}
-                    }
-                });
-                listenThread.IsBackground = true;
-                listenThread.Start();
             }
             else
             {
-                socket.Send("Thông tin từ client");
-                Thread listenThread = new Thread(() =>
-                {
-                    Listen();
-                });
-                listenThread.IsBackground = true;
-                listenThread.Start();
+                socket.isServer = false;
+                pnlChessBoard.Enabled = false;
+                Listen();
             }
+
+            // Initial chessBoard
+            grs.Clear(pnlChessBoard.BackColor);
+            this.Caro.StartLAN(grs);
         }
 
         // Create function Listen()
         void Listen()
         {
-            string data = (String) socket.Receive();
 
-            MessageBox.Show(data);
+            // De vao try catch de khi khong con ai lang nghe, chuong trinh khong bi loi
+            try
+            {
+                Thread listenThread = new Thread(() =>
+                {
+                    SocketData data = (SocketData) socket.Receive();
+                    ProcessData(data);
+                });
+                listenThread.IsBackground = true;
+                listenThread.Start();
+            }
+            catch{}
+        }
+
+        private void ProcessData(SocketData data)
+        {
+            switch (data.Command)
+            {
+                case (int) SocketCommand.NOTIFY:
+                    MessageBox.Show(data.Message);
+                    break;
+                case (int) SocketCommand.SEND_POINT:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        tmCountDown.Start();
+                        prbCountDown.Value = 0;
+                        Caro.OthersPlayChess(data.MouseX, data.MouseY, grs);
+                        pnlChessBoard.Enabled = true;
+                        if (Caro.end)
+                        {
+                            tmCountDown.Stop();
+                            prbCountDown.Value = 0;
+                        }
+                    }));
+                    break;
+                case (int)SocketCommand.NEW_GAME:
+                    MessageBox.Show("NEW GAME!!!");
+                    break;
+                default:
+                    break;
+            }
         }
 
         // Set IP Address
@@ -231,6 +309,11 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             {
                 txbIP.Text = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
             }
+        }
+
+        private void ptbIcon_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

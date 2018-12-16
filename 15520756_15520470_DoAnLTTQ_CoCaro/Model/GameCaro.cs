@@ -18,7 +18,12 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
         public Stack<ChessPiece> stkChessUndo;
         public static SolidBrush sbPnl;
 
-        public int typlePlay { get; set; } // = 1 Play by 2 player; =2 play with computer ; = 0 hasn't chose type
+        public int getTurn()
+        {
+            return this.turn;
+        }
+
+        public int typlePlay { get; set; } // = 1 Play by 2 player; =2 play with computer ; = 0 hasn't chose type = 3: LAN
 
 
         private Image ImageO = new Bitmap(Properties.Resources.o);
@@ -96,6 +101,72 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
                         chessBoard.DrawChess(g, listChessPieces[row, column].Position, ImageO);
                         turn = 1;
                         break;
+                    default:
+                        MessageBox.Show("Error!!");
+                        break;
+                }
+                stkChessUndo = new Stack<ChessPiece>();
+                ChessPiece tmp = listChessPieces[row, column];
+                ChessPiece cp = new ChessPiece(tmp.Row, tmp.Column, tmp.Position, tmp.Owner);
+                stkChessUsed.Push(cp);
+
+                if (this.check_win())
+                {
+                    // Inform the winner
+                    if (typlePlay == 1)
+                    {
+                        if (turn == 1)
+                            MessageBox.Show("Player 2 (O) win this game");
+                        else
+                            MessageBox.Show("Player 1 (X) win this game");
+
+                    }
+                    else if (typlePlay == 2)
+                    {
+                        if (turn == 1)
+                            MessageBox.Show("You win this game");
+                        else
+                            MessageBox.Show("Computer win this game");
+                    }
+                    if (typlePlay == 3)
+                    {
+                        if (turn == 1)
+                            MessageBox.Show("Player 2 (O) win this game");
+                        else
+                            MessageBox.Show("Player 1 (X) win this game");
+                    }
+                }
+                return true;
+            }
+
+        }
+
+        public bool OthersPlayChess(int mouseX, int mouseY, Graphics g)
+        {
+            if (this.typlePlay == 0)
+            {
+                MessageBox.Show("You have not selected the game mode yet!!");
+                return false;
+            }
+            else
+            {
+                int column = mouseX / Cons.CHEST_WIDTH;
+                int row = mouseY / Cons.CHEST_HEIGHT;
+
+                if (listChessPieces[row, column].Owner != 0)
+                    return false;
+                switch (turn)
+                {
+                    case 1:
+                        listChessPieces[row, column].Owner = 1;
+                        chessBoard.DrawChess(g, listChessPieces[row, column].Position, ImageX);
+                        turn = 2;
+                        break;
+                    case 2:
+                        listChessPieces[row, column].Owner = 2;
+                        chessBoard.DrawChess(g, listChessPieces[row, column].Position, ImageO);
+                        turn = 1;
+                        break;
 
                     default:
                         MessageBox.Show("Error!!");
@@ -108,12 +179,13 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
 
                 if (this.check_win())
                 {
+                    // Inform the winner
                     if (typlePlay == 1)
                     {
                         if (turn == 1)
-                            MessageBox.Show("Player 2 win this game");
+                            MessageBox.Show("Player 2 (O) win this game");
                         else
-                            MessageBox.Show("Player 1 win this game");
+                            MessageBox.Show("Player 1 (X) win this game");
 
                     }
                     else if (typlePlay == 2)
@@ -123,10 +195,28 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
                         else
                             MessageBox.Show("Computer win this game");
                     }
+                    if (typlePlay == 3)
+                    {
+                        if (turn == 1)
+                            MessageBox.Show("Player 2 (O) win this game");
+                        else
+                            MessageBox.Show("Player 1 (X) win this game");
+                    }
                 }
                 return true;
             }
 
+        }
+
+        public void StartLAN(Graphics g)
+        {
+            this.end = false;
+            this.typlePlay = 3;
+            this.CreateChessPieces();
+            this.turn = 1;
+            stkChessUsed = new Stack<ChessPiece>();
+            stkChessUndo = new Stack<ChessPiece>();
+            chessBoard.DrawBroadChess(g);
         }
 
         public void Start2Player(Graphics g)
@@ -178,6 +268,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
                 if (CheckHorizontal(item) || CheckVertical(item) || CheckCross(item) || CheckCrossBackwards(item))
                 {
                     this.end = true;
+
                     return true;
                 }
             }
