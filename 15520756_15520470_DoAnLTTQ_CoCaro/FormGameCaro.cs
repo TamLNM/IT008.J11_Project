@@ -22,7 +22,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
         public GameCaro Caro;
 
         SocketManager socket;
-        bool isLANConnected;
+        bool isLanConnected = false;
         #endregion
 
         public FormGameCaro()
@@ -43,7 +43,6 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
 
             // Initial socket
             socket = new SocketManager();
-            isLANConnected = false;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -77,31 +76,36 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
         {
             if (!this.Caro.end)
             {
-                if (this.Caro.PlayChess(e.X, e.Y, grs))
+                if (Caro.PlayChess(e.X, e.Y, grs))
                 {
                     // Set progress bar
                     tmCountDown.Start();
                     prbCountDown.Value = 0;
 
-                    if (isLANConnected)
-                    {
+                    if (isLanConnected)
+                    { 
                         // Send chess-play info to other-player 
                         socket.Send(new SocketData((int)SocketCommand.SEND_POINT, e.X, e.Y, ""));
-                        Listen();
                         pnlChessBoard.Enabled = false;
+                        Listen();
 
-                        if (this.Caro.end)
-                        {
-                            tmCountDown.Stop();
-                            prbCountDown.Value = 0;
-                        }
+                        // Setup something after had a chess-turn
+                        btnNewGame.Enabled = false;
+                        btnExit.Enabled = false;
                     }
 
+
+                    if (this.Caro.end)
+                    {
+                        tmCountDown.Stop();
+                        prbCountDown.Value = 0;
+                    }
 
                     if (this.Caro.typlePlay == 2)
                     {
                         this.Caro.StartComputer(grs);
                     }
+
                     btnUndo.Enabled = true;
                 }
             }
@@ -122,7 +126,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             prbCountDown.Value = 0;
         }
 
-        private void btnNewGame_Click(object sender, EventArgs e)
+        private void NewGame()
         {
             grs.Clear(pnlChessBoard.BackColor);
             this.Caro.NewGame(grs);
@@ -133,13 +137,12 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             // Reset progress bar
             tmCountDown.Start();
             prbCountDown.Value = 0;
-
-            if (isLANConnected)
-            {
-                socket.Send(new SocketData((int)SocketCommand.NEW_GAME));
-                Listen();
-            }
-
+        }
+        private void btnNewGame_Click(object sender, EventArgs e)
+        {
+            NewGame();
+            pnlChessBoard.Enabled = true;
+            socket.Send(new SocketData((int)SocketCommand.NEW_GAME));
         }
 
         private void btnComputer_Click(object sender, EventArgs e)
@@ -159,19 +162,29 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
 
         private void undo_Click(object sender, EventArgs e)
         {
-            this.Caro.Undo(grs);
-            this.btnRedo.Enabled = true;
+            if (this.Caro.Undo(grs))
+            {
+                this.btnRedo.Enabled = true;
+                if (isLanConnected)
+                {
+                    socket.Send(new SocketData((int)SocketCommand.UNDO));
+                }
+            }
         }
 
         private void redo_Click(object sender, EventArgs e)
         {
             this.Caro.Redo(grs);
             if (this.Caro.stkChessUndo.Count == 0) this.btnRedo.Enabled = false;
+            if (isLanConnected)
+            {
+                socket.Send(new SocketData((int)SocketCommand.REDO));
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            DialogResult dlr = MessageBox.Show("Do you want to exit!", "Exit", MessageBoxButtons.YesNo); ;
+            DialogResult dlr = MessageBox.Show("Do you want to exit!", "Exit", MessageBoxButtons.YesNo); 
             if (Caro.typlePlay != 3)
             {
                 if (dlr == DialogResult.Yes)
@@ -180,19 +193,21 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
                     Application.Exit();
                 }
             }
-
             else
             {
-                //if (dlr == DialogResult.Yes)
-                //{
-                //    try
-                //    {
-                //        socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
-                //    }
-                //    catch { }
+                if (dlr == DialogResult.Yes)
+                {
+                    try
+                    { 
+                        socket.Send(new SocketData((int)SocketCommand.QUIT));
+                        Listen();
+                        Application.Exit();
+                    }
+                    catch
+                    {
 
-                //    Application.Exit();
-                //}
+                    }
+                }
             }
         }
 
@@ -224,10 +239,10 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
 
         private void btnLAN_Click(object sender, EventArgs e)
         {
-            isLANConnected = true;
             btnUndo.Enabled = false;
             btnRedo.Enabled = false;
             btnNewGame.Enabled = true;
+            isLanConnected = true;
 
             // Reset the progress bar
             prbCountDown.Value = 0;
@@ -240,11 +255,13 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
                 socket.isServer = true;
                 pnlChessBoard.Enabled = true;
                 socket.CreateServer();
+                btnLAN.Enabled = false;
             }
             else
             {
                 socket.isServer = false;
                 pnlChessBoard.Enabled = false;
+                btnLAN.Enabled = false;
                 Listen();
             }
 
@@ -256,7 +273,6 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
         // Create function Listen()
         void Listen()
         {
-
             // De vao try catch de khi khong con ai lang nghe, chuong trinh khong bi loi
             try
             {
@@ -269,6 +285,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
                 listenThread.Start();
             }
             catch{}
+
         }
 
         private void ProcessData(SocketData data)
@@ -290,10 +307,44 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
                             tmCountDown.Stop();
                             prbCountDown.Value = 0;
                         }
+
+                        btnNewGame.Enabled = true;
+                        btnExit.Enabled = true;
                     }));
                     break;
                 case (int)SocketCommand.NEW_GAME:
-                    MessageBox.Show("NEW GAME!!!");
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        NewGame();
+                        pnlChessBoard.Enabled = false;
+                        Listen();
+                    }));
+                    break;
+                case (int)SocketCommand.QUIT:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        MessageBox.Show("The remaining player quit game !");
+                        prbCountDown.Value = 0;
+                        tmCountDown.Stop();
+                    }));
+                    break;
+                case (int)SocketCommand.UNDO:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        this.Caro.Undo(grs);
+                        this.btnRedo.Enabled = true;
+                        Listen();
+                    }));
+                    break;
+                case (int)SocketCommand.REDO:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        this.Caro.Redo(grs);
+                        this.btnRedo.Enabled = true;
+                        Listen();
+                    }));
+                    break;
+                case (int)SocketCommand.NOTHING:
                     break;
                 default:
                     break;

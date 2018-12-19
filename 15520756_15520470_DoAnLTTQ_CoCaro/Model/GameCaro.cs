@@ -246,6 +246,16 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
             }
         }
 
+        public void OtherNewGame(Graphics g)
+        {
+            this.end = false;
+            this.CreateChessPieces();
+            this.turn = 2;
+            stkChessUsed = new Stack<ChessPiece>();
+            stkChessUndo = new Stack<ChessPiece>();
+            chessBoard.DrawBroadChess(g);
+        }
+
         public void StartVsComp(Graphics g)
         {
 
@@ -728,7 +738,7 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
 
         #region UnDo Redo
         #region Undo
-        public void Undo(Graphics g)
+        public bool Undo(Graphics g)
         {
             if (typlePlay == 1)
             {
@@ -742,13 +752,17 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
                     stkChessUndo.Push(new ChessPiece(cp.Row, cp.Column, cp.Position, cp.Owner));
                     listChessPieces[cp.Row, cp.Column].Owner = 0;
                     chessBoard.RemoveChess(g, cp.Position, sbPnl);
+                    return true;
                 }
                 else
-                    MessageBox.Show("there aren't any chess on board chess!");
+                {
+                    MessageBox.Show("There aren't any chess on board chess!");
+                    return false;
+                }
             }
-            else if (typlePlay == 2)
+            else if (typlePlay == 2 || typlePlay == 3)
             {
-                if (stkChessUsed.Count != 0)
+                if (stkChessUsed.Count >= 2)
                 {
                     ChessPiece cpC = stkChessUsed.Pop();
                     ChessPiece cpP = stkChessUsed.Pop();
@@ -758,15 +772,26 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
                     listChessPieces[cpC.Row, cpC.Column].Owner = 0;
                     chessBoard.RemoveChess(g, cpP.Position, sbPnl);
                     chessBoard.RemoveChess(g, cpC.Position, sbPnl);
+                    return true;
                 }
                 else
-                    MessageBox.Show("there aren't any chess on board chess!");
+                    if (stkChessUsed.Count == 1)
+                    {
+                        MessageBox.Show("You just use the undo button The number of chessman must >= 2!");
+                        return false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("There aren't any chessman on board chess!");
+                        return false;
+                    }
             }
+            return false;
         }
         #endregion
 
         #region Redo
-        public void Redo(Graphics g)
+        public bool Redo(Graphics g)
         {
             if (typlePlay == 1)
             {
@@ -780,9 +805,10 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
                     stkChessUsed.Push(new ChessPiece(cp.Row, cp.Column, cp.Position, cp.Owner));
                     listChessPieces[cp.Row, cp.Column].Owner = cp.Owner;
                     chessBoard.DrawChess(g, cp.Position, cp.Owner == 1 ? ImageX : ImageO);
+                    return true;
                 }
             }
-            else if (typlePlay == 2)
+            else if (typlePlay == 2 || typlePlay == 3)
             {
                 if (stkChessUndo.Count != 0)
                 {
@@ -794,8 +820,10 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro.Model
                     listChessPieces[cpP.Row, cpP.Column].Owner = cpP.Owner;
                     chessBoard.DrawChess(g, cpP.Position, cpP.Owner == 1 ? ImageX : ImageO);
                     chessBoard.DrawChess(g, cpC.Position, cpC.Owner == 1 ? ImageX : ImageO);
+                    return true;
                 }
             }
+            return false;
         }
 
         #endregion

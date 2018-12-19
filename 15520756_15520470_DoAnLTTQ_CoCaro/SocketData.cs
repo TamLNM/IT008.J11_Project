@@ -43,7 +43,8 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
             NEW_GAME,
             UNDO,
             REDO,
-            QUIT            
+            QUIT,
+            NOTHING
         }
     }
 }
