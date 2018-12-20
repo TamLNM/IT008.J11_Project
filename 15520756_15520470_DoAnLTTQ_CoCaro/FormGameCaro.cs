@@ -140,9 +140,13 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
         }
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            NewGame();
-            pnlChessBoard.Enabled = true;
-            socket.Send(new SocketData((int)SocketCommand.NEW_GAME));
+            NewGame();            
+            if (isLanConnected)
+            {
+                pnlChessBoard.Enabled = true;
+                socket.Send(new SocketData((int)SocketCommand.NEW_GAME));
+            }
+
         }
 
         private void btnComputer_Click(object sender, EventArgs e)
@@ -333,18 +337,16 @@ namespace _15520756_15520470_DoAnLTTQ_CoCaro
                     {
                         this.Caro.Undo(grs);
                         this.btnRedo.Enabled = true;
-                        Listen();
                     }));
+                    Listen();
                     break;
                 case (int)SocketCommand.REDO:
                     this.Invoke((MethodInvoker)(() =>
                     {
                         this.Caro.Redo(grs);
                         this.btnRedo.Enabled = true;
-                        Listen();
                     }));
-                    break;
-                case (int)SocketCommand.NOTHING:
+                    Listen();
                     break;
                 default:
                     break;
